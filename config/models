@@ -1,3 +1,14 @@
+User
+    ident Text
+    password Text Maybe
+    UniqueUser ident
+    deriving Typeable
+Email
+    email Text
+    user UserId Maybe
+    verkey Text Maybe
+    UniqueEmail email
+
 Post
   title Text
   content Text
@@ -5,3 +16,4 @@ Post
 Comment
   post PostId
   content Text
+
