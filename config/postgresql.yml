@@ -1,0 +1,24 @@
+Default: &defaults
+  user: personal
+  password: personal
+  host: localhost
+  port: 5432
+  database: personal
+  poolsize: 10
+
+Development:
+  <<: *defaults
+
+Testing:
+  database: personal-site_test
+  <<: *defaults
+
+Staging:
+  database: personal-site_staging
+  poolsize: 100
+  <<: *defaults
+
+Production:
+  database: personal-site_production
+  poolsize: 100
+  <<: *defaults

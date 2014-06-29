@@ -1,0 +1,7 @@
+Post
+  title Text
+  content Text
+
+Comment
+  post PostId
+  content Text
