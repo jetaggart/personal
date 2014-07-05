@@ -18,3 +18,4 @@ import           SharedTypes          as Import
 
 import           Data.Monoid          as Import (Monoid (mappend, mempty, mconcat),
                                                  (<>))
+import           Network.HTTP.Types as Import (status200, status201, status401, status403, status404)

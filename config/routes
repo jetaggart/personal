@@ -6,3 +6,4 @@
 /robots.txt RobotsR GET
 
 / HomeR GET
+/posts PostsR GET POST

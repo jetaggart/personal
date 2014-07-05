@@ -23,6 +23,7 @@ library
                      SharedTypes
                      Handler.Fay
                      Handler.Home
+                     Handler.Posts
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -72,6 +73,7 @@ library
                  , monad-logger                  >= 0.3        && < 0.4
                  , fast-logger                   >= 2.1.4      && < 2.2
                  , wai-logger                    >= 2.1        && < 2.2
+                 , http-types                    >= 0.8.5
 
 executable         personal-site
     if flag(library-only)
