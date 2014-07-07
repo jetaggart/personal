@@ -3,9 +3,6 @@
 module Handler.Post where
 
 import Import
-import Data.Typeable
-import Data.Text hiding (replace)
-
 
 getPostR :: PostId -> Handler Value
 getPostR postId = do
@@ -21,4 +18,6 @@ putPostR postId = do
   sendResponseStatus status200 ("UPDATED" :: Text)
 
 deletePostR :: PostId -> Handler Value
-deletePostR postId = error "Not yet implemented: deletePostR"
+deletePostR postId = do
+   runDB $ delete postId
+   sendResponseStatus status200 ("DELETED" :: Text)
