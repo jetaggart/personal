@@ -7,7 +7,7 @@ import Database.Persist.Quasi
 import Data.Typeable (Typeable)
 import Control.Applicative
 import Control.Monad
-import Prelude (($), Show)
+import Prelude (($))
 
 -- You can define all of your database entities in the entities file.
 -- You can find more information on persistent and how to declare entities
@@ -29,11 +29,3 @@ instance FromJSON Post where
         <*> o .: "content"
 
     parseJSON _ = mzero
-
--- { "id": 1, "post_id": 1, "content": "The comment content" }
-instance ToJSON (Entity Comment) where
-    toJSON (Entity cid c) = object
-        [ "id"      .= (String $ toPathPiece cid)
-        , "post_id" .= (String $ toPathPiece $ commentPost c)
-        , "content" .= commentContent c
-        ]
