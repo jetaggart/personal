@@ -71,7 +71,7 @@ makeFoundation conf = do
               Database.Persist.applyEnv
     p <- Database.Persist.createPoolConfig (dbconf :: Settings.PersistConf)
 
-    loggerSet' <- newStdoutLoggerSet 1
+    loggerSet' <- newStdoutLoggerSet defaultBufSize
     (getter, updater) <- clockDateCacher
 
     -- If the Yesod logger (as opposed to the request logger middleware) is
