@@ -12,6 +12,7 @@ Email
 Post
   title Text
   content Text
+  deriving Show
 
 Comment
   post PostId

@@ -31,6 +31,7 @@ import Yesod.Core.Types (loggerSet, Logger (Logger))
 import Handler.Fay
 import Handler.Home
 import Handler.Posts
+import Handler.Post
 
 -- This line actually creates our YesodDispatch instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see the
@@ -70,7 +71,7 @@ makeFoundation conf = do
               Database.Persist.applyEnv
     p <- Database.Persist.createPoolConfig (dbconf :: Settings.PersistConf)
 
-    loggerSet' <- newStdoutLoggerSet defaultBufSize
+    loggerSet' <- newStdoutLoggerSet 1
     (getter, updater) <- clockDateCacher
 
     -- If the Yesod logger (as opposed to the request logger middleware) is

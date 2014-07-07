@@ -24,6 +24,7 @@ library
                      Handler.Fay
                      Handler.Home
                      Handler.Posts
+                     Handler.Post
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
