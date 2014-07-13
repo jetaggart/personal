@@ -75,6 +75,7 @@ instance Yesod App where
             $(combineStylesheets 'StaticR
                 [ css_normalize_css
                 ])
+            $(widgetFile "default-layout")
         giveUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
 
     -- This is done to provide an optimization for serving static files from
@@ -110,13 +111,11 @@ instance Yesod App where
 
 instance YesodJquery App
 instance YesodFay App where
-
     fayRoute = FaySiteR
 
     yesodFayCommand render command = do
         master <- getYesod
         fayCommandHandler master render command
-
 -- How to run database actions.
 instance YesodPersist App where
     type YesodPersistBackend App = SqlPersistT

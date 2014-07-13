@@ -2,6 +2,7 @@
 module Handler.Home where
 
 import Import
+import Yesod.Fay
 import Language.Haskell.TH ( Exp(..) )
 
 -- This is a handler function for the GET request method on the HomeR
@@ -13,7 +14,7 @@ import Language.Haskell.TH ( Exp(..) )
 -- inclined, or create a single monolithic file.
 getHomeR :: Handler Html
 getHomeR = do
-    defaultLayout $ do
-        setTitle "Welcome To Yesod!"
-        $(widgetFile "homepage")
-        $(fayFile' (ConE 'StaticR) "Home")
+  defaultLayout $ do
+    setTitle "Welcome To Yesod!"
+    $(widgetFile "homepage")
+    $(fayFile' (ConE 'StaticR) "Home")
