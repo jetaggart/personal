@@ -1,0 +1,6 @@
+<h1>Jeff Taggart
+
+<ul>
+    $forall Entity _ user <- users
+        <li>#{userIdent user}
+
