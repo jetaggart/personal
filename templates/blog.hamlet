@@ -1,0 +1,7 @@
+$if null entries
+    <p>There are no entries
+$else
+    <ul>
+        $forall Entity _ entry <- entries
+            <li>
+                <a href=/>#{entryTitle entry}
