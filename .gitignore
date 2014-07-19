@@ -5,7 +5,6 @@ config/client_session_key.aes
 *.hi
 *.o
 *.sqlite3
-fay/Language/Fay/Yesod.hs
 .hsenv*
 cabal-dev/
 yesod-devel/

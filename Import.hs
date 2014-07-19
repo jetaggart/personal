@@ -14,8 +14,16 @@ import           Model                as Import
 import           Settings             as Import
 import           Settings.Development as Import
 import           Settings.StaticFiles as Import
-import           SharedTypes          as Import
 
-import           Data.Monoid          as Import (Monoid (mappend, mempty, mconcat),
+#if __GLASGOW_HASKELL__ >= 704
+import           Data.Monoid          as Import
+                                                 (Monoid (mappend, mempty, mconcat),
                                                  (<>))
-import           Network.HTTP.Types as Import (status200, status201, status401, status403, status404)
+#else
+import           Data.Monoid          as Import
+                                                 (Monoid (mappend, mempty, mconcat))
+
+infixr 5 <>
+(<>) :: Monoid m => m -> m -> m
+(<>) = mappend
+#endif

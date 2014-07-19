@@ -15,8 +15,8 @@ import Database.Persist.Sql (SqlPersistT)
 import Settings.StaticFiles
 import Settings (widgetFile, Extra (..))
 import Model
+import Text.Jasmine (minifym)
 import Text.Hamlet (hamletFile)
-import Yesod.Fay
 import Yesod.Core.Types (Logger)
 
 -- | The site argument for your application. This can be a good place to
@@ -29,7 +29,6 @@ data App = App
     , connPool :: Database.Persist.PersistConfigPool Settings.PersistConf -- ^ Database connection pool.
     , httpManager :: Manager
     , persistConfig :: Settings.PersistConf
-    , fayCommandHandler :: CommandHandler App
     , appLogger :: Logger
     }
 
@@ -74,6 +73,7 @@ instance Yesod App where
         pc <- widgetToPageContent $ do
             $(combineStylesheets 'StaticR
                 [ css_normalize_css
+                , css_bootstrap_css
                 ])
             $(widgetFile "default-layout")
         giveUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
@@ -92,7 +92,7 @@ instance Yesod App where
     -- expiration dates to be set far in the future without worry of
     -- users receiving stale content.
     addStaticContent =
-        addStaticContentExternal Right genFileName Settings.staticDir (StaticR . flip StaticRoute [])
+        addStaticContentExternal minifym genFileName Settings.staticDir (StaticR . flip StaticRoute [])
       where
         -- Generate a unique filename based on the content itself
         genFileName lbs
@@ -109,13 +109,6 @@ instance Yesod App where
 
     makeLogger = return . appLogger
 
-instance YesodJquery App
-instance YesodFay App where
-    fayRoute = FaySiteR
-
-    yesodFayCommand render command = do
-        master <- getYesod
-        fayCommandHandler master render command
 -- How to run database actions.
 instance YesodPersist App where
     type YesodPersistBackend App = SqlPersistT

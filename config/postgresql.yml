@@ -1,9 +1,9 @@
 Default: &defaults
-  user: personal
-  password: personal
+  user: personal-site
+  password: personal-site
   host: localhost
   port: 5432
-  database: personal
+  database: personal-site
   poolsize: 10
 
 Development:
