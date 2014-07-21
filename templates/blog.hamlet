@@ -5,3 +5,8 @@ $else
         $forall Entity _ entry <- entries
             <li>
                 <a href=/>#{entryTitle entry}
+<hr>
+  <form method=post enctype=#{enctype}>
+    ^{entryWidget}
+    <div>
+        <input type=submit value="Post New Entry">

@@ -7,4 +7,4 @@
 / HomeR GET
 /admin/users UsersR GET
 
-/blog BlogR GET
+/blog BlogR GET POST

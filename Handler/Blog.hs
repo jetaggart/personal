@@ -13,5 +13,18 @@ entryForm = renderDivs $ Entry
 getBlogR :: Handler Html
 getBlogR = do
     entries <- runDB $ selectList [] []
+    (entryWidget, enctype) <- generateFormPost entryForm
     defaultLayout $ do
         $(widgetFile "blog")
+
+postBlogR :: Handler Html
+postBlogR = do
+   ((res,entryWidget),enctype) <- runFormPost entryForm
+   case res of
+        FormSuccess entry -> do
+           _ <- runDB $ insert entry
+           setMessage $ toHtml $ (entryTitle entry) <> " created"
+           redirect BlogR
+        _ -> defaultLayout $ do
+               setTitle "Please correct your entry form"
+               $(widgetFile "entryAddError")
